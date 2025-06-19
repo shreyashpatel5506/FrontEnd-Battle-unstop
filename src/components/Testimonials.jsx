@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { ChevronLeft, ChevronRight, Star, Quote } from 'lucide-react'
+import VideoBackground from './VideoBackground'
+import { videos } from '../assets'
 import './Testimonials.css'
 
 const Testimonials = () => {
@@ -9,7 +11,7 @@ const Testimonials = () => {
     triggerOnce: true,
     threshold: 0.1
   })
-  
+
   const [currentIndex, setCurrentIndex] = useState(0)
 
   const testimonials = [
@@ -53,7 +55,7 @@ const Testimonials = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentIndex((prevIndex) => 
+      setCurrentIndex((prevIndex) =>
         prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1
       )
     }, 5000)
@@ -75,8 +77,13 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="testimonials" ref={ref}>
+      <VideoBackground
+        videoSrc={videos.testimonials}
+        overlay={true}
+        className="testimonials-video-bg"
+      />
       <div className="container">
-        <motion.div 
+        <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -86,7 +93,7 @@ const Testimonials = () => {
           <p>Don't just take our word for it - hear from our satisfied clients</p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="testimonials-container"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -105,21 +112,21 @@ const Testimonials = () => {
                 <div className="quote-icon">
                   <Quote />
                 </div>
-                
+
                 <div className="testimonial-content">
                   <div className="rating">
                     {[...Array(testimonials[currentIndex].rating)].map((_, i) => (
                       <Star key={i} className="star filled" />
                     ))}
                   </div>
-                  
+
                   <p className="testimonial-text">
                     "{testimonials[currentIndex].text}"
                   </p>
-                  
+
                   <div className="testimonial-author">
-                    <img 
-                      src={testimonials[currentIndex].image} 
+                    <img
+                      src={testimonials[currentIndex].image}
                       alt={testimonials[currentIndex].name}
                       className="author-image"
                     />
@@ -133,7 +140,7 @@ const Testimonials = () => {
               </motion.div>
             </AnimatePresence>
 
-            <motion.button 
+            <motion.button
               className="carousel-btn prev"
               onClick={prevTestimonial}
               whileHover={{ scale: 1.1 }}
@@ -141,8 +148,8 @@ const Testimonials = () => {
             >
               <ChevronLeft />
             </motion.button>
-            
-            <motion.button 
+
+            <motion.button
               className="carousel-btn next"
               onClick={nextTestimonial}
               whileHover={{ scale: 1.1 }}

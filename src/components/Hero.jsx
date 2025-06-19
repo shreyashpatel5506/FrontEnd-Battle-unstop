@@ -56,6 +56,29 @@ const Hero = () => {
 
   return (
     <section id="home" className="hero" ref={heroRef}>
+      {/* Enhanced Design Background */}
+      <div className="hero-design-bg">
+        {/* Animated gradient background */}
+        <div className="hero-gradient-layer" />
+
+        {/* Mesh gradient overlay */}
+        <div className="hero-mesh-gradient" />
+
+        {/* Geometric patterns */}
+        <div className="hero-patterns">
+          <div className="pattern-grid" />
+          <div className="pattern-dots" />
+          <div className="pattern-lines" />
+        </div>
+
+        {/* Glowing orbs */}
+        <div className="glowing-orbs">
+          <div className="orb orb-1" />
+          <div className="orb orb-2" />
+          <div className="orb orb-3" />
+        </div>
+      </div>
+
       {/* 3D Background Elements */}
       <div className="hero-3d-bg">
         <motion.div
@@ -119,34 +142,43 @@ const Hero = () => {
           }}
         />
 
-        {/* Particle System */}
+        {/* Enhanced Particle System */}
         <div className="particle-system">
-          {[...Array(50)].map((_, i) => (
+          {[...Array(30)].map((_, i) => (
             <motion.div
               key={i}
-              className="particle"
+              className={`particle particle-${(i % 3) + 1}`}
               initial={{
-                x: Math.random() * window.innerWidth,
-                y: Math.random() * window.innerHeight,
+                x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1200),
+                y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800),
                 opacity: 0
               }}
               animate={{
-                y: [null, -100],
-                opacity: [0, 1, 0],
-                scale: [0, 1, 0]
+                y: [null, -150],
+                opacity: [0, 0.8, 0],
+                scale: [0, 1.2, 0],
+                rotate: [0, 360]
               }}
               transition={{
-                duration: Math.random() * 4 + 3,
+                duration: Math.random() * 6 + 4,
                 repeat: Infinity,
-                delay: Math.random() * 3,
+                delay: Math.random() * 4,
                 ease: "easeOut"
               }}
               style={{
                 left: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 5}s`
+                animationDelay: `${Math.random() * 8}s`
               }}
             />
           ))}
+        </div>
+
+        {/* Geometric Design Elements */}
+        <div className="geometric-elements">
+          <div className="geo-circle geo-1" />
+          <div className="geo-triangle geo-2" />
+          <div className="geo-square geo-3" />
+          <div className="geo-hexagon geo-4" />
         </div>
       </div>
 

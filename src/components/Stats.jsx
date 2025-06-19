@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Users, Award, Coffee, Heart } from 'lucide-react'
+import { images } from '../assets'
 import './Stats.css'
 
 const Stats = () => {
@@ -76,7 +77,7 @@ const Stats = () => {
     <section className="stats" ref={ref}>
       <div className="stats-bg" />
       <div className="container">
-        <motion.div 
+        <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -84,6 +85,23 @@ const Stats = () => {
         >
           <h2>Our Achievements</h2>
           <p>Numbers that speak for our success</p>
+
+          {/* Stats Image */}
+          <motion.div
+            className="stats-image-container"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={inView ? { opacity: 1, scale: 1 } : {}}
+            transition={{ duration: 0.8, delay: 0.3 }}
+          >
+            <img
+              src={images.stats}
+              alt="Statistics Overview"
+              className="stats-image"
+              onError={(e) => {
+                e.target.style.display = 'none'
+              }}
+            />
+          </motion.div>
         </motion.div>
 
         <div className="stats-grid">
@@ -93,52 +111,52 @@ const Stats = () => {
               className="stat-card"
               initial={{ opacity: 0, y: 50, scale: 0.8 }}
               animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
-              transition={{ 
-                duration: 0.6, 
+              transition={{
+                duration: 0.6,
                 delay: index * 0.2,
                 ease: "easeOut"
               }}
-              whileHover={{ 
+              whileHover={{
                 y: -10,
                 scale: 1.05,
                 transition: { duration: 0.3 }
               }}
             >
-              <motion.div 
+              <motion.div
                 className="stat-icon"
                 style={{ background: stat.color }}
-                whileHover={{ 
+                whileHover={{
                   rotate: 360,
                   transition: { duration: 0.6 }
                 }}
               >
                 {stat.icon}
               </motion.div>
-              
-              <motion.div 
+
+              <motion.div
                 className="stat-number"
                 initial={{ scale: 0 }}
                 animate={inView ? { scale: 1 } : {}}
-                transition={{ 
-                  duration: 0.5, 
+                transition={{
+                  duration: 0.5,
                   delay: index * 0.2 + 0.3,
                   type: "spring",
                   stiffness: 200
                 }}
               >
-                <AnimatedCounter 
-                  number={stat.number} 
+                <AnimatedCounter
+                  number={stat.number}
                   suffix={stat.suffix}
                   inView={inView}
                 />
               </motion.div>
-              
+
               <motion.p
                 className="stat-label"
                 initial={{ opacity: 0 }}
                 animate={inView ? { opacity: 1 } : {}}
-                transition={{ 
-                  duration: 0.5, 
+                transition={{
+                  duration: 0.5,
                   delay: index * 0.2 + 0.5
                 }}
               >
@@ -146,13 +164,13 @@ const Stats = () => {
               </motion.p>
 
               {/* Animated background circle */}
-              <motion.div 
+              <motion.div
                 className="stat-bg-circle"
                 style={{ background: `${stat.color}20` }}
                 initial={{ scale: 0, opacity: 0 }}
                 animate={inView ? { scale: 1, opacity: 1 } : {}}
-                transition={{ 
-                  duration: 1, 
+                transition={{
+                  duration: 1,
                   delay: index * 0.2,
                   ease: "easeOut"
                 }}
@@ -167,7 +185,7 @@ const Stats = () => {
             <motion.div
               key={i}
               className="particle"
-              initial={{ 
+              initial={{
                 x: Math.random() * window.innerWidth,
                 y: Math.random() * 400,
                 opacity: 0

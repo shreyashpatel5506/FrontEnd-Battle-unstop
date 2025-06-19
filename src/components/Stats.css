@@ -45,6 +45,23 @@
   margin: 0 auto;
 }
 
+.stats-image-container {
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.stats-image {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.stats-image:hover {
+  transform: scale(1.05);
+}
+
 .stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));

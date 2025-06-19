@@ -1,0 +1,48 @@
+.ripple-container {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(102, 126, 234, 0.3) 0%,
+    rgba(118, 75, 162, 0.2) 50%,
+    rgba(240, 147, 251, 0.1) 100%
+  );
+  pointer-events: none;
+  transform-origin: center;
+}
+
+/* Enhanced ripple for buttons */
+.ripple-container.button-ripple .ripple {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0.2) 50%,
+    transparent 100%
+  );
+}
+
+/* Card ripple effect */
+.ripple-container.card-ripple .ripple {
+  background: radial-gradient(
+    circle,
+    rgba(102, 126, 234, 0.2) 0%,
+    rgba(102, 126, 234, 0.1) 50%,
+    transparent 100%
+  );
+}
+
+/* Hero ripple effect */
+.ripple-container.hero-ripple .ripple {
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.3) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 100%
+  );
+}

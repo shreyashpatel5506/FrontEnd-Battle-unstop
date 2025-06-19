@@ -3,6 +3,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Zap, Shield, Smartphone, Globe, Users, Award } from 'lucide-react'
 import Card3D from './Card3D'
+import RippleEffect from './RippleEffect'
 import './Features.css'
 
 const Features = () => {
@@ -95,34 +96,25 @@ const Features = () => {
               key={index}
               variants={cardVariants}
             >
-              <Card3D className="feature-card" intensity={12}>
-                <motion.div
-                  className="feature-icon"
-                  whileHover={{
-                    rotate: 360,
-                    scale: 1.1,
-                    transition: { duration: 0.6 }
-                  }}
-                >
-                  {feature.icon}
-                </motion.div>
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
+              <RippleEffect className="card-ripple" intensity={1.2}>
+                <Card3D className="feature-card" intensity={12}>
+                  <motion.div
+                    className="feature-icon"
+                    whileHover={{
+                      rotate: 360,
+                      scale: 1.1,
+                      transition: { duration: 0.6 }
+                    }}
+                  >
+                    {feature.icon}
+                  </motion.div>
+                  <h3>{feature.title}</h3>
+                  <p>{feature.description}</p>
 
-                {/* Enhanced ripple effect */}
-                <motion.div
-                  className="ripple-effect"
-                  initial={{ scale: 0, opacity: 0 }}
-                  whileHover={{
-                    scale: 1.5,
-                    opacity: [0, 0.4, 0],
-                    transition: { duration: 0.8 }
-                  }}
-                />
-
-                {/* Gradient overlay */}
-                <div className="feature-gradient-overlay" />
-              </Card3D>
+                  {/* Gradient overlay */}
+                  <div className="feature-gradient-overlay" />
+                </Card3D>
+              </RippleEffect>
             </motion.div>
           ))}
         </motion.div>

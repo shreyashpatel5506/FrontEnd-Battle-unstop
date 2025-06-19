@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import { ExternalLink, Github, Filter } from 'lucide-react'
+import { ExternalLink, Code2 as Github, Filter } from 'lucide-react'
+import VideoBackground from './VideoBackground'
+import { videos, images } from '../assets'
 import './Portfolio.css'
 
 const Portfolio = () => {
@@ -9,7 +11,7 @@ const Portfolio = () => {
     triggerOnce: true,
     threshold: 0.1
   })
-  
+
   const [activeFilter, setActiveFilter] = useState('all')
 
   const projects = [
@@ -82,14 +84,19 @@ const Portfolio = () => {
     { key: 'design', label: 'Design' }
   ]
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
+  const filteredProjects = activeFilter === 'all'
+    ? projects
     : projects.filter(project => project.category === activeFilter)
 
   return (
     <section id="portfolio" className="portfolio" ref={ref}>
+      <VideoBackground
+        videoSrc={videos.showcaseWork}
+        overlay={true}
+        className="portfolio-video-bg"
+      />
       <div className="container">
-        <motion.div 
+        <motion.div
           className="section-header"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -99,7 +106,7 @@ const Portfolio = () => {
           <p>Showcasing our best work and successful projects</p>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="portfolio-filters"
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -119,7 +126,7 @@ const Portfolio = () => {
           ))}
         </motion.div>
 
-        <motion.div 
+        <motion.div
           className="portfolio-grid"
           layout
         >
@@ -156,11 +163,11 @@ const Portfolio = () => {
                     </motion.a>
                   </div>
                 </div>
-                
+
                 <div className="portfolio-content">
                   <h3>{project.title}</h3>
                   <p>{project.description}</p>
-                  
+
                   <div className="portfolio-technologies">
                     {project.technologies.map((tech, techIndex) => (
                       <span key={techIndex} className="tech-tag">
