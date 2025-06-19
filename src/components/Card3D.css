@@ -1,0 +1,76 @@
+.card-3d {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+  position: relative;
+  cursor: pointer;
+}
+
+.card-3d-content {
+  transform-style: preserve-3d;
+  position: relative;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.card-3d:hover .card-3d-content {
+  transform: translateZ(20px);
+}
+
+.card-3d-glow {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
+  background: linear-gradient(45deg, 
+    rgba(102, 126, 234, 0.3), 
+    rgba(118, 75, 162, 0.3), 
+    rgba(240, 147, 251, 0.3),
+    rgba(75, 172, 254, 0.3)
+  );
+  background-size: 200% 200%;
+  border-radius: inherit;
+  opacity: 0;
+  z-index: 1;
+  filter: blur(10px);
+  animation: gradientMove 4s ease infinite;
+  transition: opacity 0.3s ease;
+}
+
+.card-3d:hover .card-3d-glow {
+  opacity: 1;
+}
+
+/* Enhanced 3D effects for different card types */
+.card-3d.feature-card {
+  transform-origin: center center;
+}
+
+.card-3d.feature-card:hover {
+  transform: scale(1.02);
+}
+
+.card-3d.portfolio-card {
+  transform-origin: center center;
+}
+
+.card-3d.portfolio-card:hover {
+  transform: scale(1.03) rotateY(5deg);
+}
+
+.card-3d.service-card {
+  transform-origin: center center;
+}
+
+.card-3d.service-card:hover {
+  transform: scale(1.01) rotateX(2deg);
+}
+
+@keyframes gradientMove {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
